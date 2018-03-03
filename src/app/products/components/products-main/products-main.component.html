@@ -1,0 +1,9 @@
+<p>
+  products-main works!
+</p>
+
+<ul>
+	<li *ngFor="let product of (products$ | async)">
+		<a [routerLink]="['/products', product._id]">{{ product.name }}</a>
+	</li>
+</ul>
