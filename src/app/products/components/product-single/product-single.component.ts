@@ -23,52 +23,27 @@ import { startWith } from 'rxjs/operators';
 
 		<div *ngIf="showForm" class="update-form row">
 			<div class="col-lg-6">
-			<h1>Products</h1>
-			<form *ngIf="product$ | async" [formGroup] = "updateForm" (ngSubmit)="update(updateForm.value)">
-				<div class="form-group">
-					<label for="name" placeholder="Name">Name:</label>
-					<input class="form-control" type="text" id="name" formControlName="name">
-				</div>
-				<div class="form-group">
-					<label for="number">Number:</label>
-					<input class="form-control" type="text" id="number" placeholder="Number" formControlName="number">
-				</div>
-				<div class="form-group">
-					<label for="description">Description:</label>
-					<input class="form-control" type="text" id="description" formControlName="description">
-				</div>
-				
-				<button class="btn btn-primary">Save</button>
-				<button class="btn btn-outline-primary" (click)="showForm = !showForm">Cancel</button>
-			</form>
+				<h1>Products</h1>
+				<app-product-form
+					[product] = "product$ | async"
+					[updateForm] = "updateForm"
+					(update)="update($event)"
+				></app-product-form>
 			</div>
 		
 			<div class="col-lg-6">
-			<h1>Images</h1>
-			<form [formGroup] = "updateForm">
-				<div formArrayName="images" *ngFor="let item of updateForm.get('images').controls; let i = index;">
-					<div [formGroupName]="i">
-						<div class="form-group">
-							<label>Url: </label>
-							<input class="form-control" type="text" formControlName="url">
-						</div>
-						<div class="form-group">
-							<label>Name: </label>
-							<input class="form-control" type="text" formControlName="name">
-						</div>
-						<div class="form-group">
-							<button (click)="updateImage(item.value, updateForm.get('images').value)" class="btn btn-primary">Save</button>
-						</div>
-					</div>
-				</div>
-			</form>
+				<h1>Images</h1>
+				<app-produt-image-form
+					[updateForm] = "updateForm"
+					(updateImage) = "updateImage($event)"
+				>
+				</app-produt-image-form>
 			</div>
 		</div>
 
 		<button class="btn btn-info" *ngIf="!showForm" (click)="showForm = !showForm">update</button>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: ['./product-single.component.scss']
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductSingleComponent implements OnDestroy {
 
@@ -127,11 +102,11 @@ export class ProductSingleComponent implements OnDestroy {
 		this.router.navigate(['/products']);
 	}
 
-	updateImage(form, images){
+	updateImage(event){
 		this.store.dispatch(new fromActions.UpdateImageAction({
-			id: form._id,
-			images: images,
-			image: form
+			id: event.form._id,
+			images: event.images,
+			image: event.form
 		}));
 	}
 

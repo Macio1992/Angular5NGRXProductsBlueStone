@@ -12,6 +12,8 @@ import { ProductsEffects } from './effects/product';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProdutImageFormComponent } from './components/produt-image-form/produt-image-form.component';
 
 @NgModule({
 	imports: [
@@ -26,7 +28,7 @@ import { ProductComponent } from './components/product/product.component';
 		ReactiveFormsModule
 	],
 	declarations: [
-		ProductsMainComponent, ProductSingleComponent, ProductListComponent, ProductComponent
+		ProductsMainComponent, ProductSingleComponent, ProductListComponent, ProductComponent, ProductFormComponent, ProdutImageFormComponent
 	],
 	providers: [ProductService]
 })

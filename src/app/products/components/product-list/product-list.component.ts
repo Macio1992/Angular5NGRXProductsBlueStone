@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 	template: `
 		<div class="products"><app-product *ngFor="let product of products" [product]="product"></app-product></div>
 	`,
-	styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent {
 	@Input() products: Product[];

@@ -10,19 +10,19 @@ export class ProductService {
     constructor(private http: HttpClient){}
 
     getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(`/product`);
+        return this.http.get<Product[]>(`http://localhost:3000/product`);
     }
 
     getProduct(id: string): Observable<Product> {
-        return this.http.get<Product>(`product/${id}`);
+        return this.http.get<Product>(`http://localhost:3000/product/${id}`);
     }
 
     updateProduct(id: string, product: Product): Observable<Product>{
-        return this.http.put<Product>(`/product/${id}`, product);
+        return this.http.put<Product>(`http://localhost:3000/product/${id}`, product);
     }
 
     updateImage(id: string, image: Image): Observable<Image> {
-        return this.http.put<Image>(`/image/${id}`, image);
+        return this.http.put<Image>(`http://localhost:3000/image/${id}`, image);
     }
 
 }
