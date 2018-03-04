@@ -7,24 +7,22 @@ import { Image } from '../models/image';
 @Injectable()
 export class ProductService {
 
-    private url: string = 'http://localhost:3000';
-
     constructor(private http: HttpClient){}
 
     getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(`${this.url}/product`);
+        return this.http.get<Product[]>(`/product`);
     }
 
     getProduct(id: string): Observable<Product> {
-        return this.http.get<Product>(`${this.url}/product/${id}`);
+        return this.http.get<Product>(`product/${id}`);
     }
 
     updateProduct(id: string, product: Product): Observable<Product>{
-        return this.http.put<Product>(`${this.url}/product/${id}`, product);
+        return this.http.put<Product>(`/product/${id}`, product);
     }
 
     updateImage(id: string, image: Image): Observable<Image> {
-        return this.http.put<Image>(`${this.url}/image/${id}`, image);
+        return this.http.put<Image>(`/image/${id}`, image);
     }
 
 }
