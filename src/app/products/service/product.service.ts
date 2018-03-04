@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../models/product';
+import { Image } from '../models/image';
 
 @Injectable()
 export class ProductService {
@@ -20,6 +21,10 @@ export class ProductService {
 
     updateProduct(id: string, product: Product): Observable<Product>{
         return this.http.put<Product>(`${this.url}/product/${id}`, product);
+    }
+
+    updateImage(id: string, image: Image): Observable<Image> {
+        return this.http.put<Image>(`${this.url}/image/${id}`, image);
     }
 
 }

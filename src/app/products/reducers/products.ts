@@ -49,6 +49,13 @@ export function reducer(state = initialState, action: ProductActions | Collectio
             );
         }
 
+        case ProductActionTypes.UpdateImage: {
+            return adapter.updateOne({
+                id: action.payload.id, changes: {
+                    images: action.payload.images
+                }}, state)
+        }
+
         default:{
             return state;
         }

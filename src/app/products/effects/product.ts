@@ -10,6 +10,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from '../models/product';
+import { Image } from '../models/image';
 
 @Injectable()
 export class ProductsEffects {
@@ -34,6 +35,16 @@ export class ProductsEffects {
         return this.service.updateProduct(product.id, product.product).pipe(
             map((product: Product) => new fromActions.UpdateDone(product))
         );
-    })
+    });
+
+    @Effect()
+    updateImage$: Observable<Action> = this.actions$
+    .ofType<fromActions.UpdateImageAction>(fromActions.ProductActionTypes.UpdateImage)
+    .map(action => action.payload)
+    .switchMap(image => {
+        return this.service.updateImage(image.id, image.image).pipe(
+            map((image: Image) => new fromActions.UpdateImageDoneAction(image))
+        );
+    });
 
 }
