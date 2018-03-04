@@ -9,8 +9,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { CollectionEffects } from './effects/collection';
 import { ProductService } from './service/product.service';
 import { ProductsEffects } from './effects/product';
-import { SelectedProductComponent } from './components/selected-product/selected-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
 	imports: [
@@ -25,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		ReactiveFormsModule
 	],
 	declarations: [
-		ProductsMainComponent, ProductSingleComponent, SelectedProductComponent
+		ProductsMainComponent, ProductSingleComponent, ProductListComponent, ProductComponent
 	],
 	providers: [ProductService]
 })

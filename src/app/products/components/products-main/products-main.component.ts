@@ -6,7 +6,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector: 'app-products-main',
-	templateUrl: './products-main.component.html',
+	template: `
+		<app-product-list [products]="products$ | async"></app-product-list>
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ['./products-main.component.scss']
 })
